@@ -21,8 +21,20 @@ const Container = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+  animation: fadeIn 1s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   @media (max-width: 768px) {
-    padding: 0.1rem;
+    padding: 0.5rem;
   }
 `;
 
@@ -43,12 +55,29 @@ const Header = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  color: #fff;
-  font-weight: 900;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+const Title = styled.h2`
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeIn 1s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const CloseButton = styled(X)`
@@ -626,7 +655,7 @@ const Checkout = () => {
     <Container>
       <Header>
         <Title>Shopping Cart</Title>
-        <CloseButton size={24} />
+        <CloseButton onClick={() => navigate("/")} size={24} />
       </Header>
 
       <DiscountSection>

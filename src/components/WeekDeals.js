@@ -372,7 +372,7 @@ const AddToCartButton = styled.button`
 
 const NavigationButton = styled.button`
   position: absolute;
-  top: 50%;
+  top: 70%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;

@@ -241,6 +241,7 @@ const ProductInfo = styled.div`
 
   @media (max-width: 768px) {
     padding: 0.8rem;
+    height: 22vh;
   }
 `;
 
@@ -287,7 +288,7 @@ const Card = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 30vh;
+    height: 40vh;
   }
 `;
 

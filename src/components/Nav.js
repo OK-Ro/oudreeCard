@@ -20,7 +20,7 @@ const NavContainer = styled.nav`
   background-color: #fff;
 
   @media (max-width: 768px) {
-    padding: 15px 0;
+    padding: 15px 0.4rem;
   }
 `;
 
@@ -69,7 +69,7 @@ const NavLinks = styled.div`
     height: 100vh;
     background: white;
     padding: 80px 2rem 2rem;
-    gap: 1.5rem;
+    gap: 0.2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 

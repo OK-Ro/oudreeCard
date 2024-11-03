@@ -12,7 +12,7 @@ const Container = styled.div`
   padding: 2rem 6rem;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 0.5rem;
     width: 100%;
   }
 `;
