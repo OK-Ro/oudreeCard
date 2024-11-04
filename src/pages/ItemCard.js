@@ -483,9 +483,9 @@ const SmallImage = styled.img`
   &:hover {
     transform: scale(1.1);
   }
-
-    @media (max-width: 600px) {
-    margin-right 2rem;
+  @media (max-width: 600px) {
+width: 90px;
+  height: 90px;
   }
 `;
 
