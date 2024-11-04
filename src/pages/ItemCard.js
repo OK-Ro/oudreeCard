@@ -477,6 +477,10 @@ const SmallImage = styled.img`
   &:hover {
     transform: scale(1.1);
   }
+
+    @media (max-width: 600px) {
+    margin-right 2rem;
+  }
 `;
 
 const DescriptionRightContainer = styled.div`
