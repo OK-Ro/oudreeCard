@@ -464,11 +464,6 @@ const IngredientsImagesContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.5rem;
-
-
-    @media (max-width: 600px) {
-gap: 1rem;
-  }
   
 `;
 
@@ -483,7 +478,7 @@ const SmallImage = styled.img`
   &:hover {
     transform: scale(1.1);
   }
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
 width: 90px;
   height: 90px;
   }
