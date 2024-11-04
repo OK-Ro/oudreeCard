@@ -97,8 +97,9 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     padding: 1rem;
+    
   }
 `;
 
