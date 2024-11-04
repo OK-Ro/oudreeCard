@@ -470,6 +470,7 @@ const IngredientsImagesContainer = styled.div`
 const SmallImage = styled.img`
   width: 70px;
   height: 70px;
+  object-fit: cover;
   border-radius: 10px;
   border: 2px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
