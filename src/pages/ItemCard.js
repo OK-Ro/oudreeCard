@@ -467,7 +467,7 @@ const IngredientsImagesContainer = styled.div`
 
 
     @media (max-width: 600px) {
-gap: 0.6rem;
+gap: 2rem;
   }
   
 `;
