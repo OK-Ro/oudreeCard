@@ -464,6 +464,12 @@ const IngredientsImagesContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.5rem;
+
+
+    @media (max-width: 600px) {
+gap: 0.6rem;
+  }
+  
 `;
 
 const SmallImage = styled.img`
