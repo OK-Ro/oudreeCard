@@ -1,35 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useCart } from "../context.js/CartContext";
 
 const Container = styled.div`
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1s ease-in-out;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
+  padding: 10rem;
+  background-color: #f0f4f8;
 
   @media (max-width: 768px) {
     padding: 1rem;
+    margin-top: 1rem;
   }
 `;
 
 const Layout = styled.div`
   display: flex;
   gap: 2rem;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -48,7 +40,7 @@ const MainContent = styled.main`
 
 const PaymentSection = styled.div`
   flex: 1;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -64,7 +56,7 @@ const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #20b2aa;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
@@ -103,24 +95,25 @@ const Select = styled.select`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #20b2aa;
-  color: white;
+  background: linear-gradient(135deg, #20b2aa, #2e8b57);
+  color: #fff;
   padding: 0.75rem;
   border: none;
   border-radius: 0.25rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
 
   &:hover {
-    background-color: #2e8b57;
+    background: linear-gradient(135deg, #2e8b57, #20b2aa);
+    transform: scale(1.05);
   }
 `;
 
 const OrderSummary = styled.div`
   flex: 1;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -212,13 +205,6 @@ const ItemPrice = styled.span`
   color: #333;
 `;
 
-const ItemRating = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 0.875rem;
-  color: #ffcc00;
-`;
-
 const Total = styled.div`
   display: flex;
   justify-content: space-between;
@@ -244,11 +230,18 @@ const Discount = styled.div`
 const EstimatedDelivery = styled.div`
   margin-top: 1rem;
   font-size: 0.875rem;
-  color: #666;
+  color: #2e8b57;
+  background-color: #e0f7fa;
+  padding: 0.75rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export default function PaymentPage() {
   const { cartItems, updateCartItemQuantity, removeCartItem } = useCart();
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
 
   const calculateSubtotal = () => {
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -267,9 +260,89 @@ export default function PaymentPage() {
     return originalTotal - calculateTotal();
   };
 
+  const calculateEstimatedDelivery = () => {
+    const today = new Date();
+    const deliveryDays = 5; // Assume 5 business days for delivery
+    let deliveryDate = new Date(today);
+
+    for (let i = 0; i < deliveryDays; i++) {
+      deliveryDate.setDate(deliveryDate.getDate() + 1);
+      // Skip weekends
+      if (deliveryDate.getDay() === 0 || deliveryDate.getDay() === 6) {
+        i--;
+      }
+    }
+
+    return deliveryDate.toLocaleDateString();
+  };
+
+  const handlePaymentMethodChange = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+
+  const renderPaymentFields = () => {
+    switch (paymentMethod) {
+      case "creditCard":
+        return (
+          <>
+            <Input type="text" placeholder="Card Number" required />
+            <Input type="text" placeholder="Expiry Date (MM/YY)" required />
+            <Input type="text" placeholder="CVV" required />
+            <p>Enter your credit card details to proceed with the payment.</p>
+          </>
+        );
+      case "ideal":
+        return (
+          <>
+            <Select>
+              <option value="">Select your bank</option>
+              <option value="abn">ABN AMRO</option>
+              <option value="ing">ING</option>
+              <option value="rabobank">Rabobank</option>
+              <option value="sns">SNS Bank</option>
+              <option value="asn">ASN Bank</option>
+            </Select>
+            <p>
+              You will be redirected to your bank's iDEAL page to complete the
+              payment.
+            </p>
+          </>
+        );
+      case "paypal":
+        return (
+          <p>
+            You will be redirected to PayPal to complete the payment. Please
+            ensure you have a PayPal account.
+          </p>
+        );
+      case "bankTransfer":
+        return (
+          <p>
+            Please transfer the total amount to the following bank account:
+            <br />
+            <strong>IBAN:</strong> NL91ABNA0417164300
+            <br />
+            <strong>BIC:</strong> ABNANL2A
+            <br />
+            Include your order number in the payment reference.
+          </p>
+        );
+      case "klarna":
+        return (
+          <p>
+            You will be redirected to Klarna to complete the payment. Enjoy the
+            flexibility of paying later.
+          </p>
+        );
+      default:
+        return null;
+    }
+  };
+
   const subtotal = calculateSubtotal();
   const total = calculateTotal();
   const savings = calculateSavings();
+  const estimatedDelivery = calculateEstimatedDelivery();
 
   return (
     <Container>
@@ -278,16 +351,17 @@ export default function PaymentPage() {
           <PaymentSection>
             <Title>Select Payment Method</Title>
             <Form>
-              <Select>
+              <Select
+                value={paymentMethod}
+                onChange={handlePaymentMethodChange}
+              >
                 <option value="creditCard">Credit Card</option>
                 <option value="ideal">iDEAL</option>
                 <option value="paypal">PayPal</option>
                 <option value="bankTransfer">Bank Transfer</option>
                 <option value="klarna">Klarna</option>
               </Select>
-              <Input type="text" placeholder="Card Number" required />
-              <Input type="text" placeholder="Expiry Date (MM/YY)" required />
-              <Input type="text" placeholder="CVV" required />
+              {renderPaymentFields()}
               <SubmitButton type="submit">Pay</SubmitButton>
             </Form>
           </PaymentSection>
@@ -316,7 +390,6 @@ export default function PaymentPage() {
                           Remove
                         </RemoveButton>
                       </ItemQuantity>
-                      <ItemRating>Rating: ★★★★☆</ItemRating>
                     </ItemInfo>
                   </ItemDetails>
                   <ItemPrice>
@@ -337,9 +410,11 @@ export default function PaymentPage() {
               <span>Total</span>
               <span>€{total.toFixed(2)}</span>
             </Total>
-            <EstimatedDelivery>
-              Estimated Delivery: {new Date().toLocaleDateString()}
-            </EstimatedDelivery>
+            {cartItems.length > 0 && (
+              <EstimatedDelivery>
+                Estimated Delivery: {estimatedDelivery}
+              </EstimatedDelivery>
+            )}
           </OrderSummary>
         </MainContent>
       </Layout>
