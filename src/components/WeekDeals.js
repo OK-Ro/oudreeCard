@@ -99,7 +99,6 @@ const Container = styled.div`
 
   @media (max-width: 768px) {t
     padding: 1rem;
-    height:45vh;
     
   }
 `;
