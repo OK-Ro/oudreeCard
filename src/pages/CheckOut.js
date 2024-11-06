@@ -20,7 +20,6 @@ const Container = styled.div`
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
   animation: fadeIn 1s ease-in-out;
 
   @keyframes fadeIn {
@@ -33,6 +32,7 @@ const Container = styled.div`
       transform: translateY(0);
     }
   }
+
   @media (max-width: 768px) {
     padding: 0.5rem;
   }
@@ -63,17 +63,6 @@ const Title = styled.h2`
   text-transform: uppercase;
   letter-spacing: 2px;
   animation: fadeIn 1s ease-in-out;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   @media (max-width: 768px) {
     font-size: 0.9rem;
@@ -163,9 +152,6 @@ const RangeInput = styled.input`
     background: #ffd700;
     transform: scale(1.2);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-
-
   }
 `;
 
@@ -266,6 +252,11 @@ const CartItem = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const ItemImage = styled.img`
@@ -273,12 +264,22 @@ const ItemImage = styled.img`
   height: 100px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const CartItemDetails = styled.div`
   display: flex;
   flex: 1;
   margin-left: 1rem;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    flex-direction: column;
+  }
 `;
 
 const ItemDetails = styled.div`
@@ -286,6 +287,10 @@ const ItemDetails = styled.div`
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 const ItemName = styled.h2`
@@ -308,6 +313,10 @@ const PriceAndControlsContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin-top: 0.5rem;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -336,6 +345,10 @@ const ControlsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 150px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const DeleteButton = styled.button`
@@ -401,6 +414,11 @@ const TotalSection = styled.div`
   font-weight: bold;
   color: #333;
   border: 2px solid #20b2aa;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const TotalLabel = styled.span`
@@ -412,6 +430,10 @@ const TotalPriceContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const TotalPrice = styled.span`
@@ -443,6 +465,11 @@ const PromoInputContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const PromoInput = styled.input`
@@ -459,6 +486,11 @@ const PromoInput = styled.input`
     border-color: #20b2aa;
     outline: none;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-right: 0;
+  }
 `;
 
 const ApplyButton = styled.button`
@@ -473,6 +505,11 @@ const ApplyButton = styled.button`
   &:hover {
     background-color: #ffd700;
     transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 `;
 
@@ -491,6 +528,11 @@ const ActionButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const ButtonBase = styled.button`
@@ -510,7 +552,8 @@ const ButtonBase = styled.button`
 
   @media (max-width: 768px) {
     font-size: 0.8rem;
-    margin-bottom: 2rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
   }
 
   &:hover {

@@ -97,9 +97,10 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
 
-  @media (max-width: 768px) {t
+  @media (max-width: 667px) {
     padding: 1rem;
-    
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
   }
 `;
 
@@ -173,13 +174,6 @@ const SingleDealContainer = styled.div`
   &:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    height: 21vh;
-  }
 `;
 
 const Ribbon = styled.div`
@@ -245,7 +239,7 @@ const ProductName = styled.h4`
   margin: 0;
 
   @media (max-width: 480px) {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 `;
 
@@ -368,6 +362,8 @@ const AddToCartButton = styled.button`
 
   @media (max-width: 480px) {
     padding: 0.5rem 1rem;
+    font-size: 0.5rem;
+    margin-left: 2.2rem;
   }
 `;
 
@@ -391,6 +387,8 @@ const NavigationButton = styled.button`
 
   @media (max-width: 480px) {
     display: none;
+    width: 0;
+    height: 0;
   }
 `;
 

@@ -464,7 +464,12 @@ const IngredientsImagesContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.5rem;
-  
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
 `;
 
 const SmallImage = styled.img`
@@ -480,8 +485,8 @@ const SmallImage = styled.img`
     transform: scale(1.1);
   }
   @media (max-width: 768px) {
-width: 90px;
-  height: 90px;
+    width: 22vw;
+    height: 11vh;
   }
 `;
 
