@@ -6,7 +6,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Checkout from "./pages/CheckOut";
 import ItemCard from "./pages/ItemCard";
-import PaymentPage from "./pages/PayementPage";
+import PaymentPage from "./pages/PaymentPage";
 
 const Container = styled.div`
   padding: 2rem 6rem;

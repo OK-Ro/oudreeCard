@@ -387,8 +387,6 @@ const NavigationButton = styled.button`
 
   @media (max-width: 480px) {
     display: none;
-    width: 0;
-    height: 0;
   }
 `;
 

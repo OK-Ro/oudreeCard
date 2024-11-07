@@ -4,12 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { CartProvider } from "./context.js/CartContext";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const paypalOptions = {
+  "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
+  currency: "EUR",
+  intent: "capture",
+};
+
 root.render(
   <React.StrictMode>
     <CartProvider>
-      <App />
+      <PayPalScriptProvider options={paypalOptions}>
+        <App />
+      </PayPalScriptProvider>
     </CartProvider>
   </React.StrictMode>
 );
